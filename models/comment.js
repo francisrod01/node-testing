@@ -1,6 +1,7 @@
 const DB = require('../db')
 
 const COLLECTION = 'comments'
+let db
 
 
 // Get all comments
@@ -12,7 +13,7 @@ exports.all = (cb) => {
 
 // Create new comment and return its id.
 exports.create = (user, text, cb) => {
-    db.DB.getDB()
+    db = DB.getDB()
     db.collection(COLLECTION)
         .insert({ user: user, text: text }, (err, docs) => {
             if (err) {

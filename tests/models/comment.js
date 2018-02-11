@@ -7,24 +7,24 @@ const Comment = require('../../models/comment')
 
 describe('Model Comment Tests', () => {
 
-    before = (done) => {
+    before = ((done) => {
         DB.connect(DB.MODE_TEST, done)
-    }
+    })
 
-    beforeEach = (done) => {
-        DB.drop = (err) => {
+    beforeEach = ((done) => {
+        DB.drop = ((err) => {
             if (err) {
                 return done(err)
             }
             DB.fixtures(fixtures, done)
-        }
-    }
+        })
+    })
 
     it('all', (done) => {
-        Comment.all = (err, comments) => {
+        Comment.all = ((err, comments) => {
             comments.length.should.eql(3)
             done()
-        }
+        })
     })
 
     it('create', (done) => {

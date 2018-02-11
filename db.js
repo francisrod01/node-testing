@@ -10,8 +10,8 @@ const state = {
 
 // In the real world it will be better if the production uri comes
 // from an environment variable, instead of being hard coded.
-const PRODUCTION_URI = 'mongodb://127.0.0.1:27017/production'
-    , TEST_URI = 'mongodb://127.0.0.1:27017/test'
+const PRODUCTION_URI = 'mongodb://127.0.0.1:27018/production'
+    , TEST_URI = 'mongodb://127.0.0.1:27018/test'
 
 exports.MODE_TEST = 'mode_test'
 exports.MODE_PRODUCTION = 'mode_production'
@@ -68,7 +68,7 @@ exports.fixtures = (data, done) => {
     }
 
     const names = Object.keys(data.collections)
-    async.each(name, (name, cb) => {
+    async.each(names, (name, cb) => {
         state.db.createCollection(name, (err, collection) => {
             if (err) {
                 return cb(err)
